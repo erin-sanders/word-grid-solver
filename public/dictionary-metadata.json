@@ -1,0 +1,162 @@
+{
+  "source": "https://github.com/en-wl/wordlist",
+  "revision": "1e5b7d3a72f47a71da5d28686c1dd4b397178485",
+  "size": 70,
+  "spellings": [
+    "_",
+    "A",
+    "B",
+    "Z"
+  ],
+  "regions": [
+    "",
+    "US",
+    "GB"
+  ],
+  "maximum_variant_level": 5,
+  "word_count": 133004,
+  "sha256": "ff4d7ffde19d98bd9455e68076dd80d23a6ed667b747d7fcf0dedb14af47f564",
+  "copyright_sha256": "71bffd4b74ad47fff01c8b3c666e77da92737854e568850d8728024e0a53f304",
+  "excluded_pos_classes": [
+    "person",
+    "surname",
+    "place",
+    "name",
+    "name?",
+    "upper",
+    "upper?",
+    "abbr",
+    "abbr?",
+    "trademark"
+  ],
+  "filter": "ASCII lowercase word AND lemma; no lowercasing or deaccenting; exclude abbreviation/nonword/affix/multiword POS",
+  "included_probes": [
+    "rose",
+    "roses",
+    "mark",
+    "marks",
+    "will",
+    "wills",
+    "bill",
+    "bills",
+    "running",
+    "walked",
+    "cats",
+    "color",
+    "colour",
+    "organize",
+    "organise",
+    "quite"
+  ],
+  "excluded_probes": [
+    "london",
+    "mary",
+    "james",
+    "september",
+    "monday",
+    "nasa",
+    "fbi",
+    "etc",
+    "can't",
+    "mother-in-law"
+  ],
+  "source_probes": {
+    "rose": [
+      [
+        "Rose",
+        "n",
+        "person"
+      ],
+      [
+        "rose",
+        "aj",
+        ""
+      ],
+      [
+        "rose",
+        "n",
+        ""
+      ],
+      [
+        "rose",
+        "n_v",
+        ""
+      ]
+    ],
+    "mark": [
+      [
+        "Mark",
+        "n",
+        "person"
+      ],
+      [
+        "Mark",
+        "n",
+        "upper"
+      ],
+      [
+        "mark",
+        "n_v",
+        ""
+      ]
+    ],
+    "will": [
+      [
+        "Will",
+        "n",
+        "person"
+      ],
+      [
+        "will",
+        "n_v",
+        ""
+      ],
+      [
+        "will",
+        "v",
+        ""
+      ]
+    ],
+    "london": [
+      [
+        "London",
+        "n",
+        "upper"
+      ]
+    ],
+    "mary": [
+      [
+        "Mary",
+        "n",
+        "person"
+      ],
+      [
+        "Mary",
+        "n",
+        "upper"
+      ]
+    ],
+    "september": [
+      [
+        "September",
+        "n",
+        ""
+      ]
+    ],
+    "nasa": [
+      [
+        "NASA",
+        "n",
+        "upper"
+      ]
+    ],
+    "etc": [
+      [
+        "etc",
+        "abbr",
+        ""
+      ]
+    ]
+  },
+  "query": "\nSELECT DISTINCT s.word, lemma.word AS lemma, s.base_pos, s.pos_class\nFROM scowl_ s\nJOIN words lemma ON lemma.word_id = s.lemma_id\nWHERE s.size <= 70\n  AND s.spelling IN ('_', 'A', 'B', 'Z')\n  AND s.region IN ('', 'US', 'GB')\n  AND s.variant_level <= 5\n  AND s.base_pos NOT IN ('abbr', 'x', 'pre', 'suf', 'wp', 'we')\n  AND s.pos_class NOT IN (?,?,?,?,?,?,?,?,?,?)\n"
+}

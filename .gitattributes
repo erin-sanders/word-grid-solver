@@ -1,0 +1,3 @@
+public/words.txt -text
+public/dictionary-license.txt -text -whitespace
+public/dictionary-metadata.json text eol=lf

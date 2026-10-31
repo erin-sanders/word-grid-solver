@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#173b32">
+    <title>Word grid solver</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">FOLLOW THE LETTERS</p>
+        <h1>Word grid solver</h1>
+        <p>Find words that visit the most cells. Touching sides or corners counts.</p>
+      </header>
+      <form id="solver-form">
+        <div class="settings">
+          <label>Grid size
+            <select id="size"><option value="3">3 x 3</option><option value="4">4 x 4</option></select>
+          </label>
+          <label>Minimum letters
+            <input id="minimum" type="number" min="1" max="32" value="5" required>
+          </label>
+        </div>
+        <p id="grid-help">Enter one or two letters in every cell. Pairs are used together, in order. Each cell can be visited only once.</p>
+        <div id="grid" aria-describedby="grid-help"></div>
+        <div class="actions">
+          <button id="solve" type="submit">Solve</button>
+          <button id="clear" type="button" class="secondary">Clear</button>
+        </div>
+      </form>
+      <p id="status" role="status" aria-live="polite">Enter a grid to get started.</p>
+      <section aria-labelledby="results-heading">
+        <h2 id="results-heading">Words</h2>
+        <p id="path" aria-live="polite">Select a word to see its numbered path.</p>
+        <ol id="results"></ol>
+      </section>
+      <footer>English words only, no punctuation. Results depend on the bundled dictionary.
+        <a href="./dictionary.html">Dictionary &amp; license</a> /
+        <a href="https://github.com/erin-sanders/word-grid-solver">Source</a>
+      </footer>
+    </main>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
