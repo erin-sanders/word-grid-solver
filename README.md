@@ -29,12 +29,18 @@ outstanding worker so stale paths cannot reappear.
 
 ## Dictionary
 
-The bundle contains **133,004 words**, exported from
+The bundle contains **196,726 words**, exported from
 [ESDB (formerly SCOWL)](https://github.com/en-wl/wordlist) at revision
-`1e5b7d3a72f47a71da5d28686c1dd4b397178485`, size **70**. American and British
+`1e5b7d3a72f47a71da5d28686c1dd4b397178485`, size **80**. American and British
 (-ise and -ize) spellings and US/GB/shared regional entries are included, with
 variant levels 0 through 5. Inflections such as plurals and verb forms come
 directly from the source database.
+
+Size 80 is intended to cover uncommon words used in word games. It adds
+**63,722 entries** over our original size-70 bundle without removing any existing
+entries. Newly verified examples include `zyzzyva`, `zaxes`, `qat`, `qats`,
+`abaser`, and `abasers`. Size 85's additional older or obsolete entries are
+not included.
 
 The export joins each word to its source lemma. **Both must already be ASCII
 lowercase**; no names are blindly lowercased, and accented words are not
@@ -51,14 +57,14 @@ common-word senses, despite also having capitalized name entries. Probes for
 these senses, inflections, dialect spellings, names, and abbreviations are
 checked during export and in automated tests.
 
-**Limitations:** ESDB is a spelling database, not every English word. Size 70
-omits some rare words and can contain upstream errors. Capitalized-only common
+**Limitations:** ESDB is a spelling database, not every English word. Size 80
+omits words beyond its size cutoff and can contain upstream errors. Capitalized-only common
 adjectives and accented spellings are conservatively omitted. Inflections must
 be attested in the database; the solver does not invent them. Some included
 words may be informal, offensive, or adult language.
 
 Word-list SHA-256:
-`ff4d7ffde19d98bd9455e68076dd80d23a6ed667b747d7fcf0dedb14af47f564`.
+`8f0ec5fd29b0cbc931d0fb518f77a40be8d215460c3d6c22b9e1a165c63b6964`.
 The exact query, filtering choices, source probe evidence, count, revision,
 and hashes are preserved in `public/dictionary-metadata.json`.
 

@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/en-wl/wordlist",
   "revision": "1e5b7d3a72f47a71da5d28686c1dd4b397178485",
-  "size": 70,
+  "size": 80,
   "spellings": [
     "_",
     "A",
@@ -14,8 +14,8 @@
     "GB"
   ],
   "maximum_variant_level": 5,
-  "word_count": 133004,
-  "sha256": "ff4d7ffde19d98bd9455e68076dd80d23a6ed667b747d7fcf0dedb14af47f564",
+  "word_count": 196726,
+  "sha256": "8f0ec5fd29b0cbc931d0fb518f77a40be8d215460c3d6c22b9e1a165c63b6964",
   "copyright_sha256": "71bffd4b74ad47fff01c8b3c666e77da92737854e568850d8728024e0a53f304",
   "excluded_pos_classes": [
     "person",
@@ -46,7 +46,13 @@
     "colour",
     "organize",
     "organise",
-    "quite"
+    "quite",
+    "zyzzyva",
+    "zaxes",
+    "qat",
+    "qats",
+    "abaser",
+    "abasers"
   ],
   "excluded_probes": [
     "london",
@@ -80,6 +86,11 @@
       [
         "rose",
         "n_v",
+        ""
+      ],
+      [
+        "rose",
+        "v",
         ""
       ]
     ],
@@ -156,7 +167,49 @@
         "abbr",
         ""
       ]
+    ],
+    "zyzzyva": [
+      [
+        "zyzzyva",
+        "n",
+        ""
+      ]
+    ],
+    "zaxes": [
+      [
+        "zaxes",
+        "n",
+        ""
+      ]
+    ],
+    "qat": [
+      [
+        "qat",
+        "n",
+        ""
+      ]
+    ],
+    "qats": [
+      [
+        "qats",
+        "n",
+        ""
+      ]
+    ],
+    "abaser": [
+      [
+        "abaser",
+        "n",
+        ""
+      ]
+    ],
+    "abasers": [
+      [
+        "abasers",
+        "n",
+        ""
+      ]
     ]
   },
-  "query": "\nSELECT DISTINCT s.word, lemma.word AS lemma, s.base_pos, s.pos_class\nFROM scowl_ s\nJOIN words lemma ON lemma.word_id = s.lemma_id\nWHERE s.size <= 70\n  AND s.spelling IN ('_', 'A', 'B', 'Z')\n  AND s.region IN ('', 'US', 'GB')\n  AND s.variant_level <= 5\n  AND s.base_pos NOT IN ('abbr', 'x', 'pre', 'suf', 'wp', 'we')\n  AND s.pos_class NOT IN (?,?,?,?,?,?,?,?,?,?)\n"
+  "query": "\nSELECT DISTINCT s.word, lemma.word AS lemma, s.base_pos, s.pos_class\nFROM scowl_ s\nJOIN words lemma ON lemma.word_id = s.lemma_id\nWHERE s.size <= 80\n  AND s.spelling IN ('_', 'A', 'B', 'Z')\n  AND s.region IN ('', 'US', 'GB')\n  AND s.variant_level <= 5\n  AND s.base_pos NOT IN ('abbr', 'x', 'pre', 'suf', 'wp', 'we')\n  AND s.pos_class NOT IN (?,?,?,?,?,?,?,?,?,?)\n"
 }

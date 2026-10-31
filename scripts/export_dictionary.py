@@ -9,6 +9,7 @@ import sqlite3
 import subprocess
 
 REVISION = "1e5b7d3a72f47a71da5d28686c1dd4b397178485"
+SIZE = 80
 EXCLUDED_CLASSES = (
     "person", "surname", "place", "name", "name?", "upper", "upper?",
     "abbr", "abbr?", "trademark",
@@ -17,7 +18,7 @@ QUERY = """
 SELECT DISTINCT s.word, lemma.word AS lemma, s.base_pos, s.pos_class
 FROM scowl_ s
 JOIN words lemma ON lemma.word_id = s.lemma_id
-WHERE s.size <= 70
+WHERE s.size <= 80
   AND s.spelling IN ('_', 'A', 'B', 'Z')
   AND s.region IN ('', 'US', 'GB')
   AND s.variant_level <= 5
@@ -51,7 +52,8 @@ def main():
         words = sorted({row[0] for row in accepted})
         # Independent common-word senses must survive the removal of name senses.
         included = ["rose", "roses", "mark", "marks", "will", "wills", "bill", "bills",
-                    "running", "walked", "cats", "color", "colour", "organize", "organise", "quite"]
+                    "running", "walked", "cats", "color", "colour", "organize", "organise", "quite",
+                    "zyzzyva", "zaxes", "qat", "qats", "abaser", "abasers"]
         excluded = ["london", "mary", "james", "september", "monday", "nasa", "fbi", "etc",
                     "can't", "mother-in-law"]
         for word in included:
@@ -63,9 +65,10 @@ def main():
         source_probes = {
             probe: conn.execute(
                 "SELECT DISTINCT word, base_pos, pos_class FROM scowl_v0 "
-                "WHERE lower(word) = ? AND size <= 70 ORDER BY word, base_pos, pos_class", (probe,)
+                "WHERE lower(word) = ? AND size <= ? ORDER BY word, base_pos, pos_class", (probe, SIZE)
             ).fetchall()
-            for probe in ["rose", "mark", "will", "london", "mary", "september", "nasa", "etc"]
+            for probe in ["rose", "mark", "will", "london", "mary", "september", "nasa", "etc",
+                          "zyzzyva", "zaxes", "qat", "qats", "abaser", "abasers"]
         }
     destination = Path(__file__).resolve().parents[1] / "public"
     destination.mkdir(exist_ok=True)
@@ -78,7 +81,7 @@ def main():
     metadata = {
         "source": "https://github.com/en-wl/wordlist",
         "revision": revision,
-        "size": 70,
+        "size": SIZE,
         "spellings": ["_", "A", "B", "Z"],
         "regions": ["", "US", "GB"],
         "maximum_variant_level": 5,

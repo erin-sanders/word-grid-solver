@@ -5,6 +5,17 @@ async function fillGrid(page: Page, cells: string[]): Promise<void> {
   for (let i = 0; i < cells.length; i++) await page.locator('#grid input').nth(i).fill(cells[i]);
 }
 
+test('finds a newly included size-80 word with a maximum-cell path', async ({ page }) => {
+  await page.goto('');
+  await fillGrid(page, ['z', 'a', 'x', 'x', 's', 'e', 'x', 'x', 'x']);
+  await page.getByRole('button', { name: 'Solve', exact: true }).click();
+  const zaxes = page.getByRole('button', { name: 'zaxes 5 cells / 5 letters', exact: true });
+  await expect(zaxes).toBeVisible();
+  await zaxes.click();
+  await expect(page.locator('.visited')).toHaveCount(5);
+  await expect(page.locator('#path')).toContainText('zaxes:');
+});
+
 test('solves bundled words, shows paths, edits, and clears without horizontal overflow', async ({ page }) => {
   await page.goto('');
   await fillGrid(page, ['qu', 'i', 't', 'x', 'x', 'e', 'x', 'x', 'x']);
